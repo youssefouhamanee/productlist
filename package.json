@@ -1,0 +1,27 @@
+{
+  "name": "small-react-redux-shopping-cart-for-interview",
+  "version": "0.0.0",
+  "description": "Small React/Redux shopping cart for Frontend dev interview",
+  "keywords": [],
+  "homepage": "https://codesandbox.io/s/52z62xjy2p",
+  "main": "index.js",
+  "dependencies": {
+    "react": "16.11.0",
+    "react-dom": "16.11.0",
+    "react-redux": "7.1.3",
+    "react-router-dom": "5.1.2",
+    "redux": "4.0.4",
+    "redux-thunk": "2.3.0",
+    "reselect": "4.0.0",
+    "spectre.css": "0.5.8"
+  },
+  "devDependencies": {
+    "react-scripts": "1.0.0"
+  },
+  "scripts": {
+    "start": "react-scripts start",
+    "build": "react-scripts build",
+    "test": "react-scripts test --env=jsdom",
+    "eject": "react-scripts eject"
+  }
+}
