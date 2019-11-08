@@ -6,9 +6,10 @@ import {addToCart} from "./actions"
 class ProductList extends Component {
   handleAdd=(product)=>{
     // console.log('product', product)
-    let newproduct = this.props.products.find(product=>product.id)
+    let newproduct = this.props.products.find(pr=>pr.id === product.id ) 
     // console.log('new product',newproduct)
-    this.props.addToCart(newproduct)
+    
+     this.props.addToCart(newproduct)
   }
   reloadPage=()=>{
     window.location.reload();
@@ -19,9 +20,10 @@ class ProductList extends Component {
     // console.log(products);
     return (
       <Fragment>
-        <button style={{ backgroundColor:'green',color:'white',cursor:'pointer' }} onClick={this.reloadPage}>Reload</button>
-        <NavLink to="/productSelected" style={{ marginLeft: 270 }}>Cart({total})</NavLink>
-        <table border="1">
+        <div style={{marginTop:30}}>
+        <button style={{ backgroundColor:'green',color:'white',cursor:'pointer',border:'none'}} onClick={this.reloadPage}>Reload</button>
+        <NavLink to="/productSelected" style={{ marginLeft: 300 }}>Cart({total})</NavLink>
+        <table border="1" style={{marginTop:10,marginLeft:12}}>
         {products.length > 0 &&
           products.map(product => (
             <tr key={product.id}>
@@ -33,6 +35,7 @@ class ProductList extends Component {
             </tr>
           ))}
           </table>
+        </div>
       </Fragment>
     );
   }

@@ -11,7 +11,7 @@ const Cart = (state = initState, action) => {
         total : state.total
        };
     case ADD_TO_CART:
-        let products = state.products.map(pro => ({ ...pro, remaining: action.data.remaining -1 }))
+        let products = state.products.map(pro => pro.id === action.data.id ? ({ ...pro, remaining: action.data.remaining -1 }):pro)
       return {
         ...state,
         addProduct: [...state.addProduct, action.data],

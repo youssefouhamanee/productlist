@@ -2,18 +2,16 @@ import React, { Component } from 'react';
 import {connect} from "react-redux"
 
 class CardProducts extends Component {
-    state={
-        number:0
-    }
-    handleChange=(e)=>{
-        let v = e.target.value
-        if(v < 0)
-            return ;
-        this.setState({
-            number:v
-        })
+   
+    // handleChange=(e)=>{
+    //     let v = e.target.value
+    //     if(v < 0)
+    //         return ;
+    //     this.setState({
+    //         number:v
+    //     })
         
-    }
+    // }
     render() {
         const {addProduct} = this.props
         // console.log(this.props);
@@ -21,8 +19,10 @@ class CardProducts extends Component {
         return (
             <div>
                {
-                   addProduct.length > 0 ?
+                   addProduct.length > 0  ?
+                   
                    addProduct.map(pr=>
+                        
                     <ul>
                         <li><b>Product:{pr.title} </b> | <input type="number" value={pr.remaining} onChange={this.handleChange}  /> | <b>{pr.price} * {pr.remaining}</b> | <button>&times;</button> </li>
                     </ul>
