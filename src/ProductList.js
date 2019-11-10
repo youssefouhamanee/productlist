@@ -43,7 +43,7 @@ class ProductList extends Component {
 const mapStateToProps = state => {
   return {
     products: state.products,
-    total : state.total
+    total:state.cart.reduce((res,cp)=>res+cp.total,0)
   }
 
 };
