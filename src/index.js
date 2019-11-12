@@ -1,7 +1,8 @@
 import React from "react";
 import { render } from "react-dom";
-import "spectre.css/dist/spectre.min.css";
 import App from "./App"
+import "../node_modules/font-awesome/css/font-awesome.css"
+import './index.css'
 
 render(
  <App />,document.getElementById('root')

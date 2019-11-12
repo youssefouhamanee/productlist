@@ -3,24 +3,35 @@
     "id": 1,
     "title": "PlayStation Pro",
     "price": 399.99,
-    "remaining": 10
+    "remaining": 10,
+    "img":"https://www.adorama.com/images/Large/so3003346.jpg"
   },
   {
     "id": 2,
     "title": "iPhone Xs",
     "price": 1000.0,
-    "remaining": 3
+    "remaining": 3,
+    "img":"https://store.storeimages.cdn-apple.com/4668/as-images.apple.com/is/MRWE2_AV1_SILVER_GEO_FR?wid=1144&hei=1144&fmt=jpeg&qlt=80&op_usm=0.5%2C0.5&.v=1536255719841"
   },
   {
     "id": 3,
     "title": "Samsung Galaxy S10+",
     "price": 850.0,
-    "remaining": 5
+    "remaining": 5,
+    "img":"https://image-us.samsung.com/SamsungUS/mobile/phones/06102019-new/First_S10_Lockup1_Blue_gallery.jpg?$default-jpg$"
   },
   {
     "id": 4,
     "title": "PlayStation VR",
     "price": 299.99,
-    "remaining": 7
+    "remaining": 7,
+    "img":"https://images-na.ssl-images-amazon.com/images/I/51GeqFJBEkL.jpg"
+  },
+  {
+    "id": 5,
+    "title": "Thinkpad X1 Carbon",
+    "price": 1450,
+    "remaining": 6,
+    "img":"https://www.bhphotovideo.com/images/images1000x1000/lenovo_20kh002jus_x1_carbon_i7_8650_16gb_1404757.jpg"
   }
 ]

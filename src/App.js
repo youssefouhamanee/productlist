@@ -1,10 +1,10 @@
 import React, { Fragment } from "react";
-import ProductList from "./ProductList";
+import ProductList from "./components/ProductList";
 import { Provider } from "react-redux";
-import { Store } from "./Store";
+import { Store } from "./reducers/Store";
 import "spectre.css/dist/spectre.min.css";
 import {BrowserRouter as Router , Route,Switch} from "react-router-dom"
-import CardProducts from "./CardProducts";
+import CardProducts from "./components/CardProducts";
 
 
 export default function App() {
@@ -13,7 +13,7 @@ export default function App() {
         <Switch>
         <Provider store={Store}>
             <Route exact path="/" component={ProductList} />
-            <Route exact path="/productSelected" component={CardProducts}/>
+            <Route exact path="/cart" component={CardProducts}/>
         </Provider>
         </Switch>
     </Router>

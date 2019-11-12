@@ -1,4 +1,4 @@
-import {ADD_TO_CART,DELETE_PRODUCT_CART,DELETE_WITH_HANDLE_CHANGE} from "./types"
+import {ADD_TO_CART,DELETE_PRODUCT_CART,DELETE_WITH_HANDLE_CHANGE} from "../types/types"
 
 export const addToCart=(product)=>{
     return {
@@ -12,7 +12,7 @@ export const deleteProduct=(products, product)=>{
         data:{products, product}
     }
 }
-export const  handleChange=(id,v)=>{
+export const  handleChangeValue=(id,v)=>{
     return{
         type:DELETE_WITH_HANDLE_CHANGE,
         data:{id,v}
