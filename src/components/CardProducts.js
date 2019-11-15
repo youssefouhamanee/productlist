@@ -3,20 +3,26 @@ import {connect} from "react-redux"
 import {deleteProduct,handleChangeValue} from "../actions/actions"
 import { Div,
          Row, 
-         Col, 
          Ul, 
          Li ,
          Input} from './Styled';
+import {Table,Td,Img,Span,I} from './CardStyled'
 import BarShopping from './BarShopping';
 
 class CardProducts extends Component {
 
 
     handleDelete=(id)=>{
-        let product = this.props.cart.find(cp=>cp.id === id)
+        let product = this.props.cart.find(cp=>cp.id == id)
         let removePoductFromCart= this.props.cart.filter(cp=> cp.id !== id)
-        this.props.dispatch(deleteProduct(removePoductFromCart, product))
-        
+        this.props.deleteProductFromCart(removePoductFromCart, product)
+      
+    }
+    handleChange=(v,id)=>{
+       let product = this.props.cart.find(cp=>cp.id === id)
+       let productInList = this.props.cart.map(cp=>cp.total = v)
+       
+       this.props.handleValue(productInList,product.total)
     }
    
     
@@ -30,33 +36,30 @@ class CardProducts extends Component {
             <Div>
             
                 <Row>
-                    
+                    <Table>
                     {
                         cart.length > 0  ?
                         
                         cart.map(pr=>
                              
                              
-                         <Ul>
-                             <Li key={pr.id}>
-                                 <div><img width="100" hieght="100" src={pr.img} alt={pr.img}/><p>
-                                 {pr.title} 
-                                 <Input type="number" value={pr.total} 
-                                 onChange={(e)=>this.props.dispatch(handleChangeValue(pr.id,e.target.value-pr.total))} /> 
-                                 <b>{pr.price * pr.total} $</b> 
-                                 <button 
-                                 onClick={()=>this.handleDelete(pr.id)} >
-                                 &times;</button> 
-                                 </p>
-                                 </div>
-                             </Li>
-                        </Ul>
+                         <tbody>
+                             <tr key={pr.id}>
+                                 <Td><Img src={pr.img} alt={pr.img}/></Td>
+                                 <Td>{pr.title}<p><Span className="price">{pr.price}$</Span></p></Td>
+                                 <Td><Input type="number" value={pr.total} 
+                                 onChange={(e)=>this.handleChange(e.target.value-pr.total,pr.id)} /></Td> 
+                                 <Td>{pr.price * pr.total}$</Td> 
+                                 <Td><I className="fa fa-trash fa-lg" onClick={()=>this.handleDelete(pr.id)}></I></Td>
+                                
+                             </tr>
+                        </tbody>
                          )
-                         :<Ul className="center">
-                            <Li>Your Shopping Cart is empty</Li>
-                         </Ul>
+                         :<tr className="center">
+                          <Td className="card-empty">  Your Shopping Cart is empty ¯\_(ツ)_/¯ !!</Td>
+                         </tr>
                     }
-                   
+                    </Table>
                 </Row>
             </Div>
             </Fragment>
@@ -68,13 +71,17 @@ const mapStateToProps =(state)=>{
         cart:state.cart.map(cp=>{
             let product = state.products.find(p=>p.id === cp.id)
             return {...product,...cp}
-        })
+        }),
+        productincart:state.cart
     }
 }
-// const mapDispatchToProps = dispatch => {
-//     return {
-//         handleDelete: ({v,t})=>{dispatch(deleteProduct({v,t}))}
-//     }
-//   };
+const mapDispatchToProps = dispatch => {
+    return {
+        handleValue: (v,i)=>{dispatch(handleChangeValue(v,i))},
+        deleteProductFromCart:(productInList,product)=>{
+            dispatch(deleteProduct(productInList,product))
+        },
+    }
+  };
 
-export default connect(mapStateToProps)(CardProducts);
+export default connect(mapStateToProps,mapDispatchToProps)(CardProducts);

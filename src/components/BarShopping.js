@@ -6,7 +6,7 @@ import { NavLink } from "react-router-dom";
 class BarShopping extends Component {
     
     render() {
-        const {total} = this.props
+        const {total} = this.props;
         return (
             <div>
                 <Navbar>
@@ -23,7 +23,12 @@ class BarShopping extends Component {
 }
 const mapStateToProps = (state) => {
     return {
-        total:state.cart.reduce((res,cp)=>res+cp.total,0)
+        total:state.cart.reduce((res,cp)=>res+cp.total, 0)
     }
 }
+// const getFormattedTotal = (total) =>{
+//     if(total.length >){
+
+//     }
+// }
 export default connect(mapStateToProps)(BarShopping);

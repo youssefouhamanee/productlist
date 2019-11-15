@@ -65,8 +65,8 @@ export const Ul= styled.ul`
         padding: 1em;
         position: absolute;
         top: 30%;
-        left: 40%;
-        margin-right: -50%;
+        left: auto;
+        right:auto;
     }
 `
 export const Li= styled.li`
@@ -106,7 +106,7 @@ export const Item= styled.div`
     border-radius:3px;
     width:200px;
     height:200px;
-    margin-left:5px;
+    margin:0 0 5px 5px;
     box-shadow: 0 0 2px 0.5px rgba(255, 105, 135, .3);
     padding:30px;
     display:block;
@@ -115,34 +115,97 @@ export const Item= styled.div`
     background-color:white;
 `
 export const Cardsymb=styled.div`
-    background-color:#9B481D;
+   /* background-color:#9B481D;
     color:white;
-    width:30px;
-    height:30px;
-    padding:4px 5px 5px 9px;
-    position:absolute;
-    margin:0 0 0 135px;
+    width:50px;
+    height:50px;
+    padding:5px;
     border-radius:50%;
-    top: 12px;
+    border:none;
+    position:absolute;
+    float:right;
+    right:30px;
+    bottom: 12px;
     right: 5px;
     cursor:pointer;
-    
+    -webkit-user-select: none;
+    -moz-user-select: none;
+    -ms-user-select: none;
+    user-select: none;
+    -moz-appearance: none;
+    -webkit-appearance: none;
+    outline:0; */
+    box-shadow: 0px 3px 5px -1px rgba(0, 0, 0, 0.2),
+                0px 6px 10px 0px rgba(0, 0, 0, 0.14),
+                0px 1px 18px 0px rgba(0,0,0,.12);
+    display: inline-flex;
+    position: absolute;
+    align-items: center;
+    justify-content: center;
+    width: 26px;
+    height: 26px;
+    padding: 0;
+    border: none;
+    border-radius:50%;
+    cursor: pointer;
+    background-color: #9B481D;
+    color: #fff;
+    float:right;
+    right:12px;
+    bottom: 12px;
     .fa-ban{
         background-color:#9B481D;
         opacity:0.5;
+        
     }
 `
 export const Cardprice=styled.span`
-background-color:#9B481D;
-color:white;
+    background-color:#9B481D;
+    color:white;
     width:auto !important;
     height:30px;
     padding:4px 5px 5px 9px;
     position:absolute;
     margin:0 0 0 135px;
-    border-radius:0 30%;
-    bottom: 12px;
+    border-radius:50px 0 0 50px;
+    top: 0;
     right: 0;
     cursor:pointer;
     opacity: 0.5;
+`
+export const H3=styled.h3`
+color:#9B481D;
+`
+export const Buttonmodal=styled.button`
+  background-color:#9B481D;
+  color:white;
+  width:50px;
+  height:50px;
+  padding:5px;
+  border-radius:50%;
+  border:none;
+  float:right;
+  right:30px;
+  bottom:20px;
+  cursor:pointer;
+  position:fixed;
+  outline:0;
+`
+export const Notfound=styled.p`
+    
+    position: absolute;
+    align-items: center;
+    justify-content: center;
+    color:salmon;
+    top:100%;
+    left:45%;
+`
+export const Img=styled.img`
+    width:50px;
+    height:50px;
+    position:absolute;
+    top:40%;
+    left:30%;
+    align-items: center;
+    justify-content: center;
 `
