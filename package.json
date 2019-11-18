@@ -16,7 +16,8 @@
     "redux-thunk": "2.3.0",
     "reselect": "4.0.0",
     "spectre.css": "0.5.8",
-    "styled-components": "^4.4.1"
+    "styled-components": "^4.4.1",
+    "yarn": "^1.19.1"
   },
   "devDependencies": {
     "react-scripts": "1.0.0"

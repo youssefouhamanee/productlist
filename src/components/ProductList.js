@@ -1,6 +1,6 @@
 import React, { Component,Fragment } from "react";
 import { connect } from "react-redux";
-import {addToCart} from "../actions/actions"
+import {addToCart, openModal} from "../actions/actions"
 import {  Div,
           Item,
           Cardsymb,
@@ -14,6 +14,7 @@ import {  Div,
 } from './Styled';
 import BarShopping from './BarShopping'
 import Searchproduct from "./Searchproduct";
+import Modaladdproduct from "./Modaladdproduct";
 class ProductList extends Component {
 
 
@@ -26,13 +27,16 @@ class ProductList extends Component {
     // console.log('product', product)
     let newproduct = this.props.products.find(pr=>pr.id === product.id ) 
         // console.log('new product',newproduct)
-     this.props.addToCart(newproduct)
+     this.props.addToCart(newproduct,this.props.state)
   }
   reloadPage=()=>{
     window.location.reload();
   }
+  openFormCart=()=>{
+    this.props.openFormModal(this.props.isOpen)
+  }
   render() {
-    const {total} = this.props;
+    const {total,isOpen} = this.props;
   const filteredProducts = this.getFilteredProducts()
 
     // console.log(products);
@@ -44,7 +48,6 @@ class ProductList extends Component {
         <Div>
        
           <Row>
-
             <Col>
             <H3 color="#9B481D"><i className="fa fa-tags"></i> Products</H3>
             {filteredProducts.length > 0 ?
@@ -70,7 +73,9 @@ class ProductList extends Component {
           </Row>
           
         </Div>
-        <Buttonmodal onClick={()=>alert('this is modal')}><i className="fa fa-plus"></i></Buttonmodal>
+        <Buttonmodal onClick={()=>this.openFormCart()}><i className="fa fa-plus"></i></Buttonmodal>
+        <Modaladdproduct isOpen={this.props.isOpen} />
+        
       </Fragment>
     );
   }
@@ -78,17 +83,19 @@ class ProductList extends Component {
 const mapStateToProps = state => {
   return {
     products: state.products,
-    cart:state.cart,
-    search:state.search
+    state:state,
+    search:state.search,
+    isOpen:state.isOpen
   }
 
 };
 
-const mapDispatchToProps = dispatch => {
+const mapDispatchToProps = (dispatch) => {
   return {
-    addToCart:(product)=>{dispatch(addToCart(product))}
+    addToCart:(product,state)=>{dispatch(addToCart(product,state))},
+    openFormModal:(modal)=>{dispatch(openModal(modal))}
   }
-};
+}
 
 export default connect(
   mapStateToProps,

@@ -15,15 +15,10 @@ class CardProducts extends Component {
     handleDelete=(id)=>{
         let product = this.props.cart.find(cp=>cp.id == id)
         let removePoductFromCart= this.props.cart.filter(cp=> cp.id !== id)
-        this.props.deleteProductFromCart(removePoductFromCart, product)
+        this.props.deleteProductFromCart(this.props.state,removePoductFromCart, product)
       
     }
-    handleChange=(v,id)=>{
-       let product = this.props.cart.find(cp=>cp.id === id)
-       let productInList = this.props.cart.map(cp=>cp.total = v)
-       
-       this.props.handleValue(productInList,product.total)
-    }
+    
    
     
   
@@ -48,7 +43,7 @@ class CardProducts extends Component {
                                  <Td><Img src={pr.img} alt={pr.img}/></Td>
                                  <Td>{pr.title}<p><Span className="price">{pr.price}$</Span></p></Td>
                                  <Td><Input type="number" value={pr.total} 
-                                 onChange={(e)=>this.handleChange(e.target.value-pr.total,pr.id)} /></Td> 
+                                 onChange={(e)=>this.props.handleValue(this.props.state,e.target.value-pr.total,pr.id)} /></Td> 
                                  <Td>{pr.price * pr.total}$</Td> 
                                  <Td><I className="fa fa-trash fa-lg" onClick={()=>this.handleDelete(pr.id)}></I></Td>
                                 
@@ -72,14 +67,14 @@ const mapStateToProps =(state)=>{
             let product = state.products.find(p=>p.id === cp.id)
             return {...product,...cp}
         }),
-        productincart:state.cart
+        state:state
     }
 }
 const mapDispatchToProps = dispatch => {
     return {
-        handleValue: (v,i)=>{dispatch(handleChangeValue(v,i))},
-        deleteProductFromCart:(productInList,product)=>{
-            dispatch(deleteProduct(productInList,product))
+        handleValue: (state,v,i)=>{dispatch(handleChangeValue(state,v,i))},
+        deleteProductFromCart:(state,productInList,product)=>{
+            dispatch(deleteProduct(state,productInList,product))
         },
     }
   };
