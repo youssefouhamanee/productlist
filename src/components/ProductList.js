@@ -1,81 +1,95 @@
-import React, { Component,Fragment } from "react";
+import React, { Component, Fragment } from "react";
 import { connect } from "react-redux";
-import {addToCart, openModal} from "../actions/actions"
-import {  Div,
-          Item,
-          Cardsymb,
-          Row,
-          Col,
-          Cardprice,
-          H3,
-          Buttonmodal,
-          Notfound,
-          Img
-} from './Styled';
-import BarShopping from './BarShopping'
+import { addToCart, openModal } from "../actions/actions";
+import {
+  Div,
+  Item,
+  Cardsymb,
+  Row,
+  Col,
+  Cardprice,
+  H3,
+  Buttonmodal,
+  Notfound,
+  Img
+} from "./Styled";
+import BarShopping from "./BarShopping";
 import Searchproduct from "./Searchproduct";
 import Modaladdproduct from "./Modaladdproduct";
 class ProductList extends Component {
+  getFilteredProducts = () =>
+    this.props.products.filter(
+      pr => pr.title.toUpperCase().indexOf(this.props.search.toUpperCase()) > -1
+    );
 
-
-
-  getFilteredProducts = () => 
-    this.props.products.filter(pr=>pr.title.toUpperCase().indexOf(this.props.search.toUpperCase())>-1)
-  
-
-  handleAdd=(product)=>{
+  handleAdd = product => {
     // console.log('product', product)
-    let newproduct = this.props.products.find(pr=>pr.id === product.id ) 
-        // console.log('new product',newproduct)
-     this.props.addToCart(newproduct,this.props.state)
-  }
-  reloadPage=()=>{
+    let newproduct = this.props.products.find(pr => pr.id === product.id);
+    // console.log('new product',newproduct)
+    this.props.addToCart(newproduct);
+  };
+  reloadPage = () => {
     window.location.reload();
-  }
-  openFormCart=()=>{
-    this.props.openFormModal(this.props.isOpen)
-  }
+  };
+  openFormCart = () => {
+    this.props.openFormModal(this.props.isOpen);
+  };
+
+  // handleNewProduct=()=>{
+  //   return this.props.addNewProduct(this.props.products)
+  // }
   render() {
-    const {total,isOpen} = this.props;
-  const filteredProducts = this.getFilteredProducts()
+    const { isOpen } = this.props;
+    const filteredProducts = this.getFilteredProducts();
 
     // console.log(products);
     return (
       <Fragment>
-        
         <BarShopping />
         <Searchproduct />
         <Div>
-       
           <Row>
             <Col>
-            <H3 color="#9B481D"><i className="fa fa-tags"></i> Products</H3>
-            {filteredProducts.length > 0 ?
-              filteredProducts.map(product => (
-                <Item>
-                  <div key={product.id}>
-                    
-                    <h6>{product.title} <small>({product.remaining})</small></h6> 
-                    <Img src={product.img} alt={product.img}/>
-                    <p><Cardprice>{product.price}$</Cardprice></p>
-                    <Cardsymb>
-                    {product.remaining != 0 ? 
-                      <i class="fa fa-plus" onClick={()=>this.handleAdd(product)}></i>: 
-                      <i class="fa fa-ban"></i>}
-                    </Cardsymb>
-                    
-                  </div>
-                </Item>
-                
-              ))
-              :<Notfound><h1>Ooops</h1><p>Product not found :( </p></Notfound>}
+              <H3 color="#9B481D">
+                <i className="fa fa-tags"></i> Products
+              </H3>
+              {filteredProducts.length > 0 ? (
+                filteredProducts.map(product => (
+                  <Item>
+                    <div key={product.id}>
+                      <h6>
+                        {product.title} <small>({product.remaining})</small>
+                      </h6>
+                      <Img src={product.img} alt={product.img} />
+                      <p>
+                        <Cardprice>{product.price}$</Cardprice>
+                      </p>
+                      <Cardsymb>
+                        {product.remaining !== 0 ? (
+                          <i
+                            className="fa fa-plus"
+                            onClick={() => this.handleAdd(product)}
+                          ></i>
+                        ) : (
+                          <i className="fa fa-ban"></i>
+                        )}
+                      </Cardsymb>
+                    </div>
+                  </Item>
+                ))
+              ) : (
+                <Notfound>
+                  <h1>Ooops</h1>
+                  <p>Product not found :( </p>
+                </Notfound>
+              )}
             </Col>
           </Row>
-          
         </Div>
-        <Buttonmodal onClick={()=>this.openFormCart()}><i className="fa fa-plus"></i></Buttonmodal>
+        <Buttonmodal onClick={() => this.openFormCart()}>
+          <i className={!isOpen ? "fa fa-plus" : "fa fa-times"}></i>
+        </Buttonmodal>
         <Modaladdproduct isOpen={this.props.isOpen} />
-        
       </Fragment>
     );
   }
@@ -83,21 +97,22 @@ class ProductList extends Component {
 const mapStateToProps = state => {
   return {
     products: state.products,
-    state:state,
-    search:state.search,
-    isOpen:state.isOpen
-  }
-
+    search: state.search,
+    isOpen: state.isOpen
+  };
 };
 
-const mapDispatchToProps = (dispatch) => {
+const mapDispatchToProps = dispatch => {
   return {
-    addToCart:(product,state)=>{dispatch(addToCart(product,state))},
-    openFormModal:(modal)=>{dispatch(openModal(modal))}
-  }
-}
+    addToCart: (product, state) => {
+      dispatch(addToCart(product, state));
+    },
+    openFormModal: modal => {
+      dispatch(openModal(modal));
+    }
 
-export default connect(
-  mapStateToProps,
-  mapDispatchToProps
-)(ProductList);
+    // addNewProduct:(products)=>dispatch(addNewProduct(products))
+  };
+};
+
+export default connect(mapStateToProps, mapDispatchToProps)(ProductList);
