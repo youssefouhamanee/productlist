@@ -4,7 +4,7 @@ import {
   DELETE_WITH_HANDLE_CHANGE,
   SEARCH_PRODUCT,
   IS_OPEN,
-  ADD_PRODUCT
+  CREATE_NEW_PRODUCT
 } from "../types/types";
 import { Store } from "../reducers/Store";
 
@@ -74,13 +74,14 @@ export const handleChangeValue = (v, p) => {
 export const openModal = isOpen => {
   return {
     type: IS_OPEN,
-    data: Store.getState().isOpen
+    data: isOpen
   };
 };
 
 // SEARCH PRODUCT
 export const handleSearchProduct = search => {
   // console.log(search);
+
   console.log(Store.getState().search);
 
   return {
@@ -90,13 +91,9 @@ export const handleSearchProduct = search => {
 };
 
 // ADD NEW PRODUCT TO STOCK
-export const addNewProduct = products => {
-  let currentId = 5;
-
+export const createNewProduct = products => {
   return {
-    type: ADD_PRODUCT,
-    data: {
-      id: currentId++
-    }
+    type: CREATE_NEW_PRODUCT,
+    data: products
   };
 };

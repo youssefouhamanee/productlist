@@ -7,8 +7,8 @@ import {
   DELETE_PRODUCT_CART,
   DELETE_WITH_HANDLE_CHANGE,
   SEARCH_PRODUCT,
-  IS_OPEN
-  // ADD_PRODUCT
+  IS_OPEN,
+  CREATE_NEW_PRODUCT
 } from "../types/types";
 
 const Cart = (state = initState, action) => {
@@ -43,11 +43,11 @@ const Cart = (state = initState, action) => {
         ...state,
         isOpen: !action.data
       };
-    // case ADD_PRODUCT:
-    //   return{
-    //     ...state,
-    //     p
-    //   }
+    case CREATE_NEW_PRODUCT:
+      return {
+        ...state,
+        products: action.data
+      };
 
     default:
       return state;
@@ -59,10 +59,6 @@ const initState = {
   cart: [],
   search: "",
   isOpen: false
-  // currentTitle: "",
-  // currentPrice: "",
-  // currentStock: "",
-  // currentPic: ""
 };
 
 export const Store = createStore(Cart, applyMiddleware(thunk));

@@ -15,6 +15,11 @@ class BarShopping extends Component {
                 Shopping Cart
               </NavLink>
             </Li>
+            <Li>
+              <NavLink to="/dashboard" className="brand">
+                Dashboard
+              </NavLink>
+            </Li>
           </Ul>
           <Span>
             <NavLink className="NavLink" to="/cart">

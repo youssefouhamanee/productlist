@@ -1,6 +1,6 @@
 import React, { Component, Fragment } from "react";
 import { connect } from "react-redux";
-import { addToCart, openModal } from "../actions/actions";
+import { addToCart, openModal, createNewProduct } from "../actions/actions";
 import {
   Div,
   Item,
@@ -28,19 +28,20 @@ class ProductList extends Component {
     // console.log('new product',newproduct)
     this.props.addToCart(newproduct);
   };
-  reloadPage = () => {
-    window.location.reload();
-  };
+
   openFormCart = () => {
     this.props.openFormModal(this.props.isOpen);
   };
 
-  // handleNewProduct=()=>{
-  //   return this.props.addNewProduct(this.props.products)
-  // }
+  NewProduct = product => {
+    let products = [...this.props.products, product];
+    this.props.createNewProduct(products);
+  };
+
   render() {
     const { isOpen } = this.props;
     const filteredProducts = this.getFilteredProducts();
+    console.log(filteredProducts);
 
     // console.log(products);
     return (
@@ -89,7 +90,11 @@ class ProductList extends Component {
         <Buttonmodal onClick={() => this.openFormCart()}>
           <i className={!isOpen ? "fa fa-plus" : "fa fa-times"}></i>
         </Buttonmodal>
-        <Modaladdproduct isOpen={this.props.isOpen} />
+        <Modaladdproduct
+          NewProduct={this.NewProduct}
+          isOpen={this.props.isOpen}
+          openFormCart={this.openFormCart}
+        />
       </Fragment>
     );
   }
@@ -104,14 +109,15 @@ const mapStateToProps = state => {
 
 const mapDispatchToProps = dispatch => {
   return {
-    addToCart: (product, state) => {
-      dispatch(addToCart(product, state));
+    addToCart: product => {
+      dispatch(addToCart(product));
     },
     openFormModal: modal => {
       dispatch(openModal(modal));
+    },
+    createNewProduct: product => {
+      dispatch(createNewProduct(product));
     }
-
-    // addNewProduct:(products)=>dispatch(addNewProduct(products))
   };
 };
 
