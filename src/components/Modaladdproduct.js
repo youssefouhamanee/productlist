@@ -10,7 +10,11 @@ class Modaladdproduct extends Component {
     title: "",
     price: "",
     remaining: "",
-    image: ""
+    img: "",
+    error_title: "",
+    error_price: "",
+    error_remaining: "",
+    error_img: ""
   };
   handleChange = e => {
     // console.log(
@@ -23,23 +27,65 @@ class Modaladdproduct extends Component {
       [e.target.name]: e.target.value
     });
   };
+
   addNewProductFromModal = e => {
     e.preventDefault();
+
     let product = {
       id: uuidv4(),
       title: this.state.title,
       price: this.state.price,
       remaining: this.state.remaining,
-      image: this.state.image
+      img: this.state.img
     };
-    this.setState({
-      title: "",
-      price: "",
-      remaining: "",
-      image: ""
-    });
-    this.props.openFormCart();
-    this.props.NewProduct(product);
+    if (product.title == "") {
+      this.setState({
+        error_title: "your title can't be empty"
+      });
+    } else if (product.title.length < 3) {
+      this.setState({
+        error_title: "your title can't be less than 6 characeter"
+      });
+    } else if (product.price == "") {
+      this.setState({
+        error_title: "",
+        error_price: "your price can't be empty"
+      });
+    } else if (isNaN(product.price)) {
+      this.setState({
+        error_title: "",
+        error_price: "your price should be a number !!"
+      });
+    } else if (product.remaining == "" || product.remaining == 0) {
+      this.setState({
+        error_price: "",
+        error_remaining: "your remaining can't be empty or equal 0"
+      });
+    } else if (isNaN(product.remaining)) {
+      this.setState({
+        error_price: "",
+        error_remaining: "your remaining should be a number !!"
+      });
+    } else if (product.img == "") {
+      this.setState({
+        error_remaining: "",
+        error_img: "Select image of your product !!"
+      });
+    } else {
+      this.setState({
+        title: "",
+        price: "",
+        remaining: "",
+        img: "",
+        error_title: "",
+        error_price: "",
+        error_remaining: "",
+        error_img: ""
+      });
+
+      this.props.openFormCart();
+      this.props.NewProduct(product);
+    }
   };
   render() {
     // console.log(this.state);
@@ -55,11 +101,15 @@ class Modaladdproduct extends Component {
               <input
                 type="text"
                 name="title"
+                id="title"
                 onChange={this.handleChange}
                 placeholder="Title ..."
                 className="form-control"
                 value={this.state.title}
               />
+              {this.state.error_title && (
+                <p className="form__error">{this.state.error_title}</p>
+              )}
               <input
                 type="text"
                 name="price"
@@ -68,6 +118,9 @@ class Modaladdproduct extends Component {
                 className="form-control"
                 value={this.state.price}
               />
+              {this.state.error_price && (
+                <p className="form__error">{this.state.error_price}</p>
+              )}
               <input
                 type="text"
                 onChange={this.handleChange}
@@ -76,14 +129,22 @@ class Modaladdproduct extends Component {
                 className="form-control"
                 value={this.state.remaining}
               />
-              <label>Select Picture of product</label>
+              {this.state.error_remaining && (
+                <p className="form__error">{this.state.error_remaining}</p>
+              )}
               <input
                 type="file"
                 onChange={this.handleChange}
-                name="image"
+                name="img"
                 className="form-control"
                 value={this.state.image}
               />
+              {this.state.error_img && (
+                <p className="form__error">{this.state.error_img}</p>
+              )}
+              {/* <button onClick={() => this.fileInput.click()}>
+                Upload image
+              </button> */}
               <button className="btn btn-success">Add</button>
             </FormModal>
           </div>

@@ -1,0 +1,16 @@
+{
+  "env": {
+    "ADMIN_SERVER": "https://admin.develop.hme.ovh",
+    "API_URL": "https://api.develop.hme.ovh",
+    "grant_type": "password",
+    "client_id": "AdminHireMe"
+  },
+  "chromeWebSecurity": false,
+  "viewportHeight": 760,
+  "viewportWidth": 1200,
+  "video": false,
+  "trashAssetsBeforeRuns": false,
+  "failOnStatusCode": false,
+  "numTestsKeptInMemory": 1,
+  "pageLoadTimeout": 180000
+}

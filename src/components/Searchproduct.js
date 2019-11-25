@@ -14,6 +14,7 @@ class Searchproduct extends Component {
         <Row>
           <Input
             type="text"
+            name="search"
             value={this.props.search}
             onChange={e => this.handleSearch(e)}
             placeholder="Search ..."
