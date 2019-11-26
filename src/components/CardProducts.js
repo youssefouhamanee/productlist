@@ -12,6 +12,9 @@ class CardProducts extends Component {
     let removePoductFromCart = this.props.cart.filter(cp => cp.id !== id);
     this.props.deleteProductFromCart(removePoductFromCart, product);
   };
+  // handleKey = e => {
+  //   e.preventDefault();
+  // };
 
   render() {
     const { cart } = this.props;
@@ -41,12 +44,18 @@ class CardProducts extends Component {
                         <Input
                           type="number"
                           value={pr.total}
-                          onChange={e =>
-                            this.props.handleValue(
-                              e.target.value - pr.total,
-                              pr.id
-                            )
-                          }
+                          onChange={e => {
+                            e.target.value - pr.remaining > pr.total
+                              ? alert("Exceeded limit")
+                              : this.props.handleValue(
+                                  e.target.value - pr.total,
+                                  pr.id
+                                );
+                          }}
+
+                          // onKeyDown={e =>
+                          //   pr.remaining != 0 && this.handleKey(e)
+                          // }
                         />
                       </Td>
                       <Td>{(pr.price * pr.total).toFixed(2)}$</Td>
