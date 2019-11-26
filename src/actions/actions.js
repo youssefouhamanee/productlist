@@ -52,13 +52,12 @@ export const handleChangeValue = (v, p) => {
   let product = Store.getState().products.find(pr => pr.id === p);
   console.log(product);
   console.log(Store.getState().cart);
-  let cart = Store.getState()
-    .cart.map(cp =>
-      cp.id == product.id && ((product.remaining > 0 && v > 0) || v <= 0)
-        ? { ...cp, total: cp.total + v }
-        : cp
-    )
-    .filter(cp => cp.total !== 0);
+  let cart = Store.getState().cart.map(cp =>
+    cp.id == product.id && ((product.remaining > 0 && v > 0) || v <= 0)
+      ? { ...cp, total: cp.total + v }
+      : cp
+  );
+  // .filter(cp => cp.total !== 0);
   console.log(cart);
 
   let products = Store.getState().products.map(p =>

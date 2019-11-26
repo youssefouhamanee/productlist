@@ -43,7 +43,7 @@ class CardProducts extends Component {
                       <Td>
                         <Input
                           type="number"
-                          value={pr.total}
+                          value={numeral(pr.total).format("0")}
                           onChange={e => {
                             e.target.value - pr.remaining > pr.total
                               ? alert("Exceeded limit")
