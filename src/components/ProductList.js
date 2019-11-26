@@ -16,6 +16,7 @@ import {
 import BarShopping from "./BarShopping";
 import Searchproduct from "./Searchproduct";
 import Modaladdproduct from "./Modaladdproduct";
+import numeral from "numeral";
 class ProductList extends Component {
   getFilteredProducts = () =>
     this.props.products.filter(
@@ -56,14 +57,16 @@ class ProductList extends Component {
               </H3>
               {filteredProducts.length > 0 ? (
                 filteredProducts.map(product => (
-                  <Item>
+                  <Item className="animation-col">
                     <div key={product.id}>
                       <h6>
                         {product.title} <small>({product.remaining})</small>
                       </h6>
                       <Img src={product.img} alt={product.img} />
                       <p>
-                        <Cardprice>{product.price}$</Cardprice>
+                        <Cardprice>
+                          {numeral(product.price).format("$0,0.00")}
+                        </Cardprice>
                       </p>
                       <Cardsymb>
                         {product.remaining !== 0 ? (

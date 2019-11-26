@@ -8,7 +8,8 @@ import {
   DELETE_WITH_HANDLE_CHANGE,
   SEARCH_PRODUCT,
   IS_OPEN,
-  CREATE_NEW_PRODUCT
+  CREATE_NEW_PRODUCT,
+  DELETE_PRODUCT_DASHBOARD
 } from "../types/types";
 
 const Cart = (state = initState, action) => {
@@ -48,7 +49,16 @@ const Cart = (state = initState, action) => {
         ...state,
         products: action.data
       };
-
+    case DELETE_PRODUCT_DASHBOARD:
+      return {
+        ...state,
+        products: action.data
+      };
+    // case EDIT_PRODUCT:
+    //   return {
+    //     ...state,
+    //     products: action.payload
+    //   };
     default:
       return state;
   }

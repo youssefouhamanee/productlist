@@ -12,9 +12,9 @@ describe("products", () => {
             cy.wrap(ul.eq(0)).within(() => {
               cy.get("li").then(li => {
                 expect(li).to.have.length(2);
-                cy.wrap(li.eq(1)).within(() => {
+                cy.wrap(li.eq(0)).within(() => {
                   //   expect("a").to.contain("Dashboard");
-                  cy.get("a").contains("Dashboard");
+                  cy.get("a").contains("Shopping Cart");
                 });
               });
             });

@@ -4,6 +4,7 @@ import { deleteProduct, handleChangeValue } from "../actions/actions";
 import { Div, Row, Input } from "./Styled";
 import { Table, Td, Img, Span, I } from "./CardStyled";
 import BarShopping from "./BarShopping";
+import numeral from "numeral";
 
 class CardProducts extends Component {
   handleDelete = id => {
@@ -31,7 +32,9 @@ class CardProducts extends Component {
                       <Td>
                         {pr.title}
                         <p>
-                          <Span className="price">{pr.price}$</Span>
+                          <Span className="price">
+                            {numeral(pr.price).format("$0,0.00")}$
+                          </Span>
                         </p>
                       </Td>
                       <Td>

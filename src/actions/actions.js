@@ -4,7 +4,8 @@ import {
   DELETE_WITH_HANDLE_CHANGE,
   SEARCH_PRODUCT,
   IS_OPEN,
-  CREATE_NEW_PRODUCT
+  CREATE_NEW_PRODUCT,
+  DELETE_PRODUCT_DASHBOARD
 } from "../types/types";
 import { Store } from "../reducers/Store";
 
@@ -97,3 +98,19 @@ export const createNewProduct = products => {
     data: products
   };
 };
+export const deleteProductDashboard = product => {
+  console.log(product);
+
+  return {
+    type: DELETE_PRODUCT_DASHBOARD,
+    data: product
+  };
+};
+// // EDIT PRODUCT
+
+// export const editProduct = product => {
+//   return {
+//     type: EDIT_PRODUCT,
+//     payload: product
+//   };
+// };

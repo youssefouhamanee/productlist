@@ -1,4 +1,10 @@
-body{
-    background-color:whitesmoke;
-    font-family: Arial, Helvetica, sans-serif;
+body {
+  background-color: whitesmoke;
+  font-family: Arial, Helvetica, sans-serif;
+}
+.loader {
+  justify-content: "center";
+  align-items: "center";
+  width: "100vw";
+  height: "100vh";
 }
